@@ -3,6 +3,7 @@
     width: 300px;
     height: 300px;
     perspective: 1000px;
+    cursor: pointer;
 }
 
 .card-inner {
@@ -13,7 +14,7 @@
     transform-style: preserve-3d;
 }
 
-.flipped .card-inner {
+.container:hover .card-inner {
     transform: rotateY(180deg);
 }
 
@@ -36,12 +37,12 @@
 
 .card-front {
     background-color: transparent;
-    color: black;
 }
 
 .card-back {
     background-color: transparent;
-    color: white;
     transform: rotateY(180deg);
 } 
+
+
 
