@@ -1,3 +1,7 @@
+#meowmory {
+    display:flex;
+}
+
 .container {
     background-color: transparent;
     width: 300px;
@@ -14,7 +18,8 @@
     transform-style: preserve-3d;
 }
 
-.container:hover .card-inner {
+.flipped .card-inner,
+    .solved .card-inner {
     transform: rotateY(180deg);
 }
 
@@ -42,6 +47,9 @@
 .card-back {
     background-color: transparent;
     transform: rotateY(180deg);
+    background-color:hotpink;
+    border-radius: 10%;
+    height: 19rem;
 } 
 
 

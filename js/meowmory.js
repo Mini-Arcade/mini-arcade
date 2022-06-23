@@ -1,69 +1,106 @@
-// create card constructor
-//Product.prototype.render = function () {
-//    this.viewed++;
-//    const theProduct = this;
-//    const img = document.createElement("img");
-//    img.setAttribute("src", this.file);
-//    img.setAttribute("alt", this.name);
-//    img.classList.add("images");
-//    imagesDiv.appendChild(img);
-  
- //   img.addEventListener("click", function () {
- //     theProduct.clicked++;
- //     console.log(theProduct);
-  
-function Card(nameArg, fileArg) {
+ let numFlipped = 0;
+ 
+ function Card(nameArg, fileArg) {
     this.name = nameArg;
     this.file = fileArg;
+    this.flipped = false;
 }
 
-//imagesArray =[];
-imgNames =
-    ["gangstaKitty1",
-    "gangstaKitty2",
-    "handsKitty1",
-    "handsKitty2",
-    "lickingKitty1",
-    "lickingKitty2",
-    "shockedkitty1",
-    "shockedkitty2",
-    "smilingKitty1",
-    "smilingKitty2",
-    "tongue-kitty",
-    "wet-kitty"];
+
+// create render function for cards that spits onto the page
+Card.prototype.render = function () {
+
+    const meowmory = document.getElementById("meowmory");
+
+    let container = document.createElement("div");
+    container.classList.add("container");
+    meowmory.appendChild(container);
+    let currentCard = this
+
+// THIS IS WHERE THE MAGIC HAPPENS 
+    container.addEventListener("click", function() {
+        container.classList.toggle("flipped")
+        if (currentCard.flipped === true) {
+            currentCard.flipped = false
+            numFlipped--
+        
+            // decrement numFlipped
+        } else {
+            currentCard.flipped = true
+            numFlipped++
+            //incrementNumFlipped
+        }
+        console.log(numFlipped)
+
+        if (numFlipped === 2) { 
+            for (a = 0; a < imgNames.length; a++) {
+                if (imgNames[a].name !== currentCard.name) {
+                    const allFlipped = document.getElementsByClassName("flipped")
+                    for(card of allFlipped) {
+                        card.classList.remove("flipped")
+                    }
+                    numFlipped = 0;
+                    this.flipped = true;
+                }
+            }
+        }
+    })
+
+
+    let cardInner = document.createElement("div");
+    cardInner.classList.add("card-inner");
+    container.appendChild(cardInner);
+
+
+    let cardFront = document.createElement("div");
+    cardFront.classList.add("card-front");
+    cardInner.appendChild(cardFront);
+
+    let frontImg = document.createElement("img");
+    frontImg.setAttribute("src", "meow-img/meowmory.png");
+    cardFront.appendChild(frontImg);
+
+    let cardBack = document.createElement("div");
+    cardBack.classList.add("card-back");
+    cardInner.appendChild(cardBack);
+
+    let backImg = document.createElement("img");
+    backImg.setAttribute("src", this.file);
+    cardBack.appendChild(backImg);
+
+}
+
+
+// names array =[];
+const imgNames =
+    ["gangstaKitty",
+    "grumpyKitty",
+    "handsKitty",
+    "lickingKitty",
+    "shockedKitty",
+    "smilingKitty",
+    "tongueKitty",
+    "wetKitty"];
 
 // empty cards array
 
-cards = [];
+const cards = [];
 
-// loop through array to create 16 card objects with the contstructor
+// loop through array to create 16 card objects with the contstructor and push into empty cards array
 for(let a = 0; a < imgNames.length; a++) {
 
-    let gangstaKitty1 = new Card('gangsta-kitty', )
-    let gangstaKitty2 = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    let gangstaKitty = new Card('gangsta-kitty', )
-    
+    console.log("im here")
 
+    let newCard = new Card(imgNames[a], "meow-img/" + imgNames[a] + ".png")
+    console.log(newCard)
+    cards.push(newCard)
+}
+
+// loop through and render cards array
+for(a = 0; a < cards.length; a++) {
+ cards[a].render();
 }
 
 
-// create render function for cards
-Card.prototype.render = function () {
-
-}
 
 
-//add event listener so clicking cards flips them
