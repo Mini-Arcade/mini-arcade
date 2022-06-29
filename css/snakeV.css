@@ -123,10 +123,6 @@ h2 {
 	transition: all 0.2s ease-in;
 }
 
-#replay svg {
-	margin-right: 8px;
-}
-
 @media (max-width: 600px) {
 	#replay {
 		margin-bottom: 20px;
