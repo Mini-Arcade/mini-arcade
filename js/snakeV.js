@@ -70,6 +70,8 @@ function checkHighScore() {
 
 //COMMENT: Create an audio object that will be used to play sound when the snake eats the food.
 const gulpAudio = new Audio("../audio/gulp.mp3");
+const startGame = new Audio("../audio/StartGame.wav");
+const theGameOver = new Audio("../audio/gameOver.mp3");
 
 //COMMENT: Just before drawin the snake, change the position of the snake when the keys are pressed.
 //NOTE: Check if snake collides or eats food. This is done by checking if the snake's head is in the same position as the food.
@@ -77,12 +79,11 @@ const gulpAudio = new Audio("../audio/gulp.mp3");
 
 function drawGame() {
 	changeSnakePosition();
-	//This part if the function will check if the game is over. In coding terminoldy, if result is true, then the game is over.
+	//This part if the function will check if the game is over. In coding terminology, if result is true, then the game is over.
 	let result = isGameOver();
 	if (result) {
 		return;
 	}
-
 	clearScreen();
 	checkFoodCollision();
 	drawFood();
@@ -151,7 +152,7 @@ function changeSnakePosition() {
 	headY = headY + yVelocity;
 }
 
-//COMMENT: Now create a function that will move the snake. or to be more accurate, add event listers of keyboard keys.
+//COMMENT: Now create a function that will move the snake.
 document.addEventListener("keydown", keyDown);
 function keyDown(e) {
 	//each key has a keyCode.
@@ -210,16 +211,20 @@ function isGameOver() {
 	let gameOver = false;
 	//Check if the snake is out of bounds.
 	if (headX < 0 || headY < 0) {
-		console.log("Game over");
+		theGameOver.play();
 		gameOver = true;
 	}
 	//Check if the snake collides with the wall.
 	else if (headX === tileCount || headY === tileCount) {
 		console.log("Game over 2");
+		theGameOver.play();
+        
 		gameOver = true;
 		//Check if the snake collides with itself.
 	} else if (snakeParts.some((part) => part.x === headX && part.y === headY)) {
 		console.log("Game over 3");
+		theGameOver.play();
+
 		gameOver = true;
 	}
 	///Now some text will be displayed on the screen.
@@ -254,7 +259,7 @@ checkHighScore();
 //COMMENT: create an event listener that will reset the game.
 
 domReplay.addEventListener("click", function () {
+    startGame.play();
 	location.reload();
+    //create an audio start play when the replay button is clicked.
 });
-
-//COMMENT:
