@@ -217,6 +217,7 @@ function isGameOver() {
         CTX.fillStyle = 'white';
         CTX.font = '80px Verdana';
 
+
         let gradient = CTX.createLinearGradient(0, 0, W, H);
         gradient.addColorStop("0", "magenta");
         gradient.addColorStop("1.0", "blue");
@@ -226,6 +227,10 @@ function isGameOver() {
         CTX.fillStyle = gradient;
 
         CTX.fillText("Game Over", W / 2 - 200, H / 2);
+        CTX.font = '50px Verdana';
+        CTX.textAlign = 
+        CTX.fillText("H.Score: " + localStorage.getItem('highscore'), W / 2 - 200, H / 2 + 100);
+        
         return true
     }
   
