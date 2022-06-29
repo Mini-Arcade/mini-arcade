@@ -4,6 +4,7 @@ let domReplay = document.querySelector("#replay");
 let domScore = document.querySelector("#score");
 let domCanvas = document.createElement("canvas");
 document.querySelector("#canvas").appendChild(domCanvas);
+
 //CTX is the context of the canvas.
 const CTX = domCanvas.getContext("2d");
 
@@ -233,4 +234,8 @@ function isGameOver() {
 
 drawGame();
 
-//COMMENT: set timeout takes milliseconds as a parameter.
+//COMMENT: create an event listener that will reset the game.
+
+domReplay.addEventListener("click", function() {
+    location.reload();
+});
