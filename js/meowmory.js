@@ -1,4 +1,6 @@
- let numFlipped = 0;
+let numFlipped = 0;
+let guess1 = "";
+let guess2 = "";
  
  function Card(nameArg, fileArg) {
     this.name = nameArg;
@@ -15,11 +17,13 @@ Card.prototype.render = function () {
     let container = document.createElement("div");
     container.classList.add("container");
     meowmory.appendChild(container);
-    let currentCard = this
+    let currentCard = Card
 
 // THIS IS WHERE THE MAGIC HAPPENS 
     container.addEventListener("click", function() {
+
         container.classList.toggle("flipped")
+
         if (currentCard.flipped === true) {
             currentCard.flipped = false
             numFlipped--
@@ -32,19 +36,24 @@ Card.prototype.render = function () {
         }
         console.log(numFlipped)
 
-        if (numFlipped === 2) { 
+        if (numFlipped === 1) { 
+            console.log(Card.flipped);
+        } else {
+          console.log(Card.flipped);
+        }
+
             for (a = 0; a < imgNames.length; a++) {
                 if (imgNames[a].name !== currentCard.name) {
                     const allFlipped = document.getElementsByClassName("flipped")
-                    for(card of allFlipped) {
-                        card.classList.remove("flipped")
+                    for(Card of allFlipped) {
+                        Card.classList.remove("flipped")
                     }
                     numFlipped = 0;
                     this.flipped = true;
                 }
             }
-        }
-    })
+        })
+    
 
 
     let cardInner = document.createElement("div");
@@ -74,6 +83,14 @@ Card.prototype.render = function () {
 // names array =[];
 const imgNames =
     ["gangstaKitty",
+    "grumpyKitty",
+    "handsKitty",
+    "lickingKitty",
+    "shockedKitty",
+    "smilingKitty",
+    "tongueKitty",
+    "wetKitty",
+    "gangstaKitty",
     "grumpyKitty",
     "handsKitty",
     "lickingKitty",
