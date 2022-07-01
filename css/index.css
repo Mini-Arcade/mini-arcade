@@ -1,0 +1,127 @@
+
+header {
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	margin: 0 auto;
+	top: 2px;
+	width: 90%;
+	height: 5%;
+	color: black;
+	background-color:   #6e7888;
+	border-radius: 5px;
+}
+
+nav ul {
+	display: flex;
+	list-style: none;
+	margin-left: 20px;
+	align-items: center;
+}
+nav li {
+	display: flex;
+	margin-top: 6.5px;
+	margin-right: 10px;
+	margin-left: 50px;
+	align-items: center;
+	padding: 2px;
+	border : 3px solid black;
+	border-radius: 5px;
+}
+
+nav li:hover {
+	background-color: #000000;
+	color: rgb(245, 242, 242);
+	border: 3px solid rgb(0, 0, 0);
+}
+
+nav a:hover {
+	color: rgb(255, 255, 255);
+}
+
+nav li a {
+	text-decoration: none;
+	color: white;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+
+/* center the body */
+html,
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-image: url("https://cdn.wallpapersafari.com/67/96/6geFZU.jpg");
+    color:rgb(255, 255, 255)
+}
+
+/* Login CSS */
+.show-btn {
+    cursor: pointer;
+}
+
+input[type='checkbox'] {
+    display: none;
+}
+/* show form function */
+#show ::checked ~ .container {
+    display: block;
+}
+
+.container {
+    display: none;
+    width: 350px;
+    padding: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.18)
+}
+.container {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+
+.container .close-btn{
+    position:absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.close-btn:hover {
+    color: rgb(255, 0, 0);
+}
+
+/* footer */
+.footer-container {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    height: 5%;
+}
