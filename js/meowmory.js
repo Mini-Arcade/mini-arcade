@@ -1,9 +1,11 @@
 let numFlipped = 0;
  
- function Card(nameArg, fileArg) {
+ function Card(idArg, nameArg, fileArg) {
+    this.id = idArg;
     this.name = nameArg;
     this.file = fileArg;
     this.flipped = false;
+
 }
 
 // create render function for cards that spits onto the page
@@ -36,32 +38,35 @@ Card.prototype.render = function () {
     cardBack.appendChild(backImg);
 
 // THIS IS WHERE THE MAGIC HAPPENS 
-    container.addEventListener("click", function(e) {
-        const clickedCard = e.target
-    container.classList.toggle("flip");
-    console.log(e)
-    numFlipped++
-        this.flipped = true
-        const checkCards = function (e) {
-            
-            if(clickedCard === 2) {
-                if(clickedCard[0].name === clickedCard[1].name) {
-                    console.log("match");
-                } else {
-                    console.log("wrong");
-                }
-    
-    checkCards(e);
-    
+    const thisCard = this
+    container.addEventListener("click", function() {
+        // turn the card around
+        container.classList.toggle("flip");
+        // keeping count of flips
+        numFlipped++
+        // updating object flipped to true 
+        thisCard.flipped = !thisCard.flipped
+        // check all cards for another flipped card 
+        for (let i = 0; i < cards.length; i++) {
+            console.log(cards[i].flipped);
+            if(thisCard.name === cards[i].name && cards[i].flipped === true && thisCard.id !== cards[i].id) {
+                // name and flip status match 
+                console.log("its a match")
+            } else {
+                cards[i].flipped.classList.add("solved");
+            }
+
+        if(cards[i].flipped > 1) {
+            cards.flipped.classList.remove("flip") 
+                // add solved to cards flipped and in css make it obvious they've been solved. 
+                // after for loop check flipped cards and if more than one remove any flipped class. 
+            }
         
-        
-            
         }
+        })
     }
-    })
+        // if the flipped cards match, show correct or not, else, flip back round
 
-
-}
 
 // names array =[];
 const imgNames =
@@ -72,26 +77,22 @@ const imgNames =
     "shockedKitty",
     "smilingKitty",
     "tongueKitty",
-    "wetKitty",
-    "gangstaKitty",
-    "grumpyKitty",
-    "handsKitty",
-    "lickingKitty",
-    "shockedKitty",
-    "smilingKitty",
-    "tongueKitty",
-    "wetKitty"];
+    "wetKitty",];
 
 // empty cards array
 
 const cards = [];
 
 // loop through array to create 16 card objects with the contstructor and push into empty cards array
+let id = 0;
 for(let a = 0; a < imgNames.length; a++) {
-
-    let newCard = new Card(imgNames[a], "meow-img/" + imgNames[a] + ".png")
+    id++
+    let newCard = new Card(id, imgNames[a], "meow-img/" + imgNames[a] + ".png")
+    id++
+    let newCard2 = new Card(id, imgNames[a], "meow-img/" + imgNames[a] + ".png")
     //console.log(newCard)
     cards.push(newCard)
+    cards.push(newCard2)
 }
 
 // loop through and render cards array

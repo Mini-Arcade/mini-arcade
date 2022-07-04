@@ -18,9 +18,13 @@
     transform-style: preserve-3d;
 }
 
-.flip .card-inner,
-    .solved .card-inner {
+.flip .card-inner {
     transform: rotateY(180deg);
+}
+
+.solved {
+    transform: rotateY(180deg);
+    border: solid, greenyellow;
 }
 
 .card-front, .card-back {
