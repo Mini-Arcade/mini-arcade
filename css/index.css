@@ -71,13 +71,14 @@ body {
 input[type='checkbox'] {
     display: none;
 }
+
 /* show form function */
-#show ::checked ~ .container {
+#show :checked ~ .container {
     display: block;
 }
 
 .container {
-    display: none;
+    display:none;
     width: 350px;
     padding: 20px;
     border-radius: 5px;
@@ -115,6 +116,38 @@ input[type='checkbox'] {
 .close-btn:hover {
     color: rgb(255, 0, 0);
 }
+/* gif's css */
+
+.snakeVgif {
+    border: #6e7888 solid 3px;
+    border-radius: 5px;
+    width: 50%;
+    height: 50%;
+    transition: all 0.5s ease;  /* Animation */
+    -webkit-transition: all 0.5s ease;  /* Safari & Chrome */
+    -moz-transition: all 0.5s ease;  /* Firefox & IE */
+    -ms-transition: all 0.5s ease;  /* Internet Explorer 9 */
+    -o-transition: all 0.5s ease;  /* Opera */
+}
+
+.snakeVgif:hover {
+    border:rgb(77, 192, 241) solid 3px;
+}
+
+main {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 80%;
+    height: 100%;
+}
+
+.snakeVgif {
+    margin-top: 80px;
+    
+}
+/* Place class snakeVgif on the top left*/
+
 
 /* footer */
 .footer-container {
