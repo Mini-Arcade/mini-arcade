@@ -1,3 +1,5 @@
+
+
 //First create canvas and append it to the body
 
 let domReplay = document.querySelector("#replay");
@@ -263,3 +265,10 @@ domReplay.addEventListener("click", function () {
 	location.reload();
     //create an audio start play when the replay button is clicked.
 });
+
+// =================== Modal =================== //
+
+	// Get the modal
+const modal = document.querySelector('.prompt');
+const openModal = document.querySelector('.open-modal');
+const closeModal = document.querySelector('.close-modal');
