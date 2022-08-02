@@ -1,52 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/snakeV.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="css/snakeV.css" />
     <title>Snake Voltax</title>
-</head>
-<body>
+  </head>
+  <body>
     <header class="nav">
-        <h1>Mini Arcade</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="meowmory.html">Meowmory</a></li>
-            </ul>
-        </nav>
+      <h1>Mini Arcade</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="meowmory.html">Meowmory</a></li>
+        </ul>
+      </nav>
     </header>
-    <dialog class="prompt">
-      <p>Please enter your username</p>
-      <form >
-      <input type="text" id="username" placeholder="Username">
-      <div>
-      <button id="submit">Submit</button>
-      <button id="cancel">Cancel</button>
-      </div>
-      </form>
-  </dialog>
     <div class="container noselect">
-        <div class="wrapper">
-          <button id="replay">
-            <i class="fas fa-play"></i>
-            RESTART
-          </button>
-          <div id="canvas">
-      
-          </div>
-          
-          <div id="ui">
-            <h2>SCORE
-            </h2>
-            <span id="score">00</span>
-          </div>
+      <div class="wrapper">
+        <button id="replay">
+          <i class="fas fa-play"></i>
+          RESTART
+        </button>
+        <div id="canvas">
+          <div class="leaderboard">
+            <h1>
+                <svg class="ico-cup">
+                    <use xlink:href="#cup"></use>
+                </svg>
+               Leaderboard
+            </h1>
+            <ol id="plyrOl" >
+ 
+            </ol>
         </div>
-        <div id="compny-Name">
-          <h1>Snake Voltax</h1> <span>&copy Mini Arcade ltd</span>
+
+  
+
+        </div>
+
+        <div id="ui">
+          <h2>SCORE</h2>
+          <span id="score">00</span>
         </div>
       </div>
+      <div id="compny-Name">
+        <h1>Snake Voltax</h1>
+        <span>&copy Mini Arcade ltd</span>
+      </div>
+
+    </div>
     <script src="js/snakeV.js"></script>
-</body>
+    <script src="js/leaderboard.js"></script>
+  </body>
 </html>
+
+
+
+
+
+

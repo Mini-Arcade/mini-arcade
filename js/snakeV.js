@@ -247,7 +247,8 @@ function isGameOver() {
 		CTX.font = "30px Verdana";
 
         CTX.fillText("Score: " + score, W / 2 - 200, H / 2 + 50);
-        CTX.fillText("HighScore: " + localStorage.getItem('highscore'), W / 2 - 200, H / 2 + 100);
+        CTX.fillText("Your HighScore: " + localStorage.getItem('highscore'), W / 2 - 200, H / 2 + 100);
+		CTX.fillText('Leaderboard Position: ' + '2', W / 2 - 200, H / 2 + 150);
 
 		return true;
 	}
@@ -265,10 +266,3 @@ domReplay.addEventListener("click", function () {
 	location.reload();
     //create an audio start play when the replay button is clicked.
 });
-
-// =================== Modal =================== //
-
-	// Get the modal
-const modal = document.querySelector('.prompt');
-const openModal = document.querySelector('.open-modal');
-const closeModal = document.querySelector('.close-modal');
