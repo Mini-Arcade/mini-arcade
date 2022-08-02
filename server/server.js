@@ -17,6 +17,19 @@ app.get('/', (req, res) => {
 } 
 );
 
+app.post('/games', async (req, res) => {
+const {name, score} = req.query;
+
+// add a new game entry to database
+await Game.create({
+    name,
+    score,
+})
+
+const games = await Game.find(); //mongoose
+res.send(games)
+})
+
 app.get('/games', async (req, res) => {
     // const filterQuery = {};
 
