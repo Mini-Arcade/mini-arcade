@@ -1,64 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link rel="stylesheet" href="css/snakeV.css" />
-    <title>Snake Voltax</title>
-  </head>
-  <body>
-    <header class="nav">
-      <h1>Mini Arcade</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="meowmory.html">Meowmory</a></li>
-        </ul>
-      </nav>
-    </header>
-    <div class="container noselect">
-      <div class="wrapper">
-        <button id="replay">
-          <i class="fas fa-play"></i>
-          RESTART
-        </button>
-        <div id="canvas">
-          <div class="leaderboard">
-            <h1>
-                <svg class="ico-cup">
-                    <use xlink:href="#cup"></use>
-                </svg>
-               Leaderboard
-            </h1>
-            <ol id="plyrOl" >
- 
-            </ol>
-        </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-  
+		<!--  -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+		/>
 
-        </div>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+		/>
+		<!--  -->
 
-        <div id="ui">
-          <h2>SCORE</h2>
-          <span id="score">00</span>
-        </div>
-      </div>
-      <div id="compny-Name">
-        <h1>Snake Voltax</h1>
-        <span>&copy Mini Arcade ltd</span>
-      </div>
+		<link rel="stylesheet" href="css/snakeV.css" />
+		<title>Snake Voltax</title>
+	</head>
+	<body>
+		<header class="nav">
+			<h1>Mini Arcade</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="meowmory.html">Meowmory</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div class="container noselect">
+			<div class="wrapper">
+				<button id="replay">
+					<i class="fas fa-play"></i>
+					RESTART
+				</button>
+				<div id="canvas">
+					<div class="leaderboard">
+						<h1>
+							<svg class="ico-cup">
+								<use xlink:href="#cup"></use>
+							</svg>
+							Leaderboard
+						</h1>
+						<ol id="plyrOl"></ol>
+					</div>
+					<div class="bg-modal">
+						<div class="modal-content">
+							<!-- Slider main container -->
+							<div class="swiper">
+								<!-- Additional required wrapper -->
+								<div class="swiper-wrapper">
+									<!-- Slides -->
+									<div class="swiper-slide">
+										<img
+											src="./images/char2.png"
+											width="50px"
+											alt="character image"
+										/>
+									</div>
+									<div class="swiper-slide">
+										<img
+											src="./images/char1.png"
+											width="50px"
+											alt="character image"
+										/>
+									</div>
+									<div class="swiper-slide">
+										<img
+											src="./images/char3.png"
+											width="50px"
+											alt="character image"
+										/>
+									</div>
+									<div class="swiper-slide">
+										<img
+											src="./images/char4.png"
+											width="50px"
+											alt="character image"
+										/>
+									</div>
+									<div class="swiper-slide">
+										<img
+											src="./images/char5.png"
+											width="50px"
+											alt="character image"
+										/>
+									</div>
+									<div class="swiper-slide">
+										<img
+											src="./images/char6.png"
+											width="50px"
+											alt="character image"
+										/>
+									</div>
+									<div class="swiper-slide">
+										<img
+											src="./images/char7.png"
+											width="50px"
+											alt="character image"
+										/>
+									</div>
+									<div class="swiper-slide">
+										<img
+											src="./images/char8.png"
+											width="50px"
+											alt="character image"
+										/>
+									</div>
 
-    </div>
-    <script src="js/snakeV.js"></script>
-    <script src="js/leaderboard.js"></script>
-  </body>
+									...
+								</div>
+								<!-- If we need pagination -->
+								<div class="swiper-pagination"></div>
+
+								<!-- If we need navigation buttons -->
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
+
+								<!-- If we need scrollbar -->
+							</div>
+
+              <!-- NOTE: Form begins -->
+							<form id="playerForm">
+								<input
+									type="text"
+									name="playerName"
+									id="playerName"
+									placeholder="Enter Your Username"
+									required
+									onkeyup="lettersOnly(this)"
+								/>
+								<input type="submit" value="Start Game" id="formSubmit" />
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div id="ui">
+					<h2>SCORE</h2>
+					<span id="score">00</span>
+				</div>
+			</div>
+			<div id="compny-Name">
+				<h1>Snake Voltax</h1>
+				<span>&copy Mini Arcade ltd</span>
+			</div>
+		</div>
+		<script src="js/snakeV.js"></script>
+		<script src="js/leaderboard.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+		<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+
+		<script>
+			const swiper = new Swiper(".swiper", {
+				// Optional parameters
+
+				// If we need pagination
+				pagination: {
+					el: ".swiper-pagination",
+				},
+
+				// Navigation arrows
+				navigation: {
+					nextEl: ".swiper-button-next",
+					prevEl: ".swiper-button-prev",
+				},
+
+				// And if we need scrollbar
+				scrollbar: {
+					el: ".swiper-scrollbar",
+				},
+			});
+
+			// Restricts input for the given textbox to the given inputFilter.
+			function lettersOnly(input) {
+				let regex = /[^a-z]{3,10}/gi;
+				input.value = input.value.replace(regex, "");
+			}
+
+			//// One function that does three things
+
+			//Make an axios call to the post end point -: this create a new game
+			//Rerun getLeaderboard()
+			//Hide modal
+
+			//This fucntion runs on Submit
+
+
+		</script>
+	</body>
 </html>
-
-
-
-
-
-

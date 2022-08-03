@@ -1,7 +1,5 @@
-
-
 //First create canvas and append it to the body
-
+let domSubmit = document.querySelector("#playerForm");
 let domReplay = document.querySelector("#replay");
 let domScore = document.querySelector("#score");
 let domCanvas = document.createElement("canvas");
@@ -61,12 +59,15 @@ let foodY = 5;
 let score = 0;
 
 //: check if highscore is in local storage.
-function checkHighScore() {
+function checkScoreNname() {
 	if (localStorage.getItem("highscore") === null) {
 		localStorage.setItem("highscore", 0);
 	}
 	if (localStorage.getItem("score") === null) {
 		localStorage.setItem("score", 0);
+	}
+	if (localStorage.getItem("username") === null) {
+		localStorage.setItem("username", "Player");
 	}
 }
 
@@ -195,6 +196,7 @@ function checkFoodCollision() {
 		tailLength++;
 		score++;
 		localStorage.setItem("score", score);
+		console.log('score', score);
 		//check if local highscore is less than score.
 		if (localStorage.getItem("highscore") < score) {
 			localStorage.setItem("highscore", score);
@@ -220,7 +222,7 @@ function isGameOver() {
 	else if (headX === tileCount || headY === tileCount) {
 		console.log("Game over 2");
 		theGameOver.play();
-        
+
 		gameOver = true;
 		//Check if the snake collides with itself.
 	} else if (snakeParts.some((part) => part.x === headX && part.y === headY)) {
@@ -246,9 +248,28 @@ function isGameOver() {
 
 		CTX.font = "30px Verdana";
 
-        CTX.fillText("Score: " + score, W / 2 - 200, H / 2 + 50);
-        CTX.fillText("Your HighScore: " + localStorage.getItem('highscore'), W / 2 - 200, H / 2 + 100);
-		CTX.fillText('Leaderboard Position: ' + '2', W / 2 - 200, H / 2 + 150);
+		CTX.fillText("Score: " + score, W / 2 - 200, H / 2 + 50);
+		CTX.fillText(
+			"Local HighScore: " + localStorage.getItem("highscore"),
+			W / 2 - 200,
+			H / 2 + 100
+		);
+		getPosition().then((pos) => {
+			console.log(pos);
+			CTX.fillText("Leaderboard Position: " + pos, W / 2 - 200, H / 2 + 150);
+		});
+
+		//Add a game to the mongo database.
+		axios.post(`http://localhost:3005/games?name=${localStorage.getItem("username")}&score=${score}`).then((res) => {
+			getLeaderboard().then(() => {
+				console.log('I am here')
+				return true
+			})
+		}).catch((err) => {
+			console.log(err);
+		})
+
+		// getLeaderboard();
 
 		return true;
 	}
@@ -257,12 +278,50 @@ function isGameOver() {
 }
 
 drawGame();
-checkHighScore();
+checkScoreNname();
 
 //COMMENT: create an event listener that will reset the game.
 
+// ========== Leaderboard =======================
+
+async function getPosition() {
+	const response = await axios.get("http://localhost:3005/games");
+	const data = response.data;
+	data.sort((a, b) => b.score - a.score);
+
+	for (let a = 0; a < data.length; a++) {
+		console.log(localStorage.getItem('score'))
+		console.log(data[a].score)
+
+		if (localStorage.getItem("score") >= data[a].score) {
+			console.log('I am here 2');
+			return a + 1;
+		} 
+	}
+	return data.length + 1;
+}
+
+// ===========Input Name Modal=====================
+
 domReplay.addEventListener("click", function () {
-    startGame.play();
-	location.reload();
-    //create an audio start play when the replay button is clicked.
+	document.querySelector(".bg-modal").style.display = "flex";
+	startGame.play();
+
+	// 	startGame.play();
+	// location.reload();
 });
+
+domSubmit.addEventListener("submit", function (e) {
+	e.preventDefault();
+	console.log(e.target.playerName.value);
+	let playerName = e.target.playerName.value;
+	localStorage.setItem("username", playerName);
+	document.querySelector(".bg-modal").style.display = "none";
+	location.reload();
+});
+
+// The modal gets displayed at the end of the gameOver
+// When Submit is clicked, It changes name variable in localStorage
+// 2) it does new axios post to create a new item. The end point for this is (http://localhost:3005/games?name=TIM&score=100000))
+//3) First clear the data.
+//3) It rerun the leaderboard function to refresh the data

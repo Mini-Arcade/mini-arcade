@@ -12,6 +12,9 @@ async function getLeaderboard() {
         const plyrOl = document.getElementById("plyrOl");
         const modal = document.getElementById("myModal");
 
+        plyrOl.innerHTML ='';
+
+
         for(let a = 0; a < response.data.length; a++) {
 
 
@@ -37,12 +40,16 @@ async function getLeaderboard() {
 }
 getLeaderboard();
 
-// // Want to use async/await? Add the `async` keyword to your outer function/method.
-// async function getUser() {
-//   try {
-//     const response = await axios.get('/user?ID=12345');
-//     console.log(response);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+
+
+
+
+// One function that does three things
+
+//Make an axios call to the post end point -: this create a new game
+
+
+//Rerun getLeaderboard()
+//Hide modal
+
+//This fucntion runs on Submit

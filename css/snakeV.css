@@ -206,10 +206,7 @@ h2 {
 	left: 0;
 }
 
-/* ==============Modal ================= */
-
-
-
+/* ==============Leaderboard Modal ================= */
 
 /*--------------------
 Leaderboard
@@ -430,3 +427,50 @@ Leaderboard
 .the-most img {
     max-width: 100%;
 }
+
+/* ============ Modal ================== */
+
+.bg-modal {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: absolute;
+	top: 0;
+	left: 0;
+
+}
+
+.modal-content {
+	width: 500px;
+	height: 300px;
+	background-color: white;
+	border-radius: 10px;
+	text-align: center;
+	padding: 20px;
+}
+
+/* ====== Swiper Slide =========== */
+
+.swiper-slide {
+	padding-bottom: 15px;
+}
+
+.playerForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 40px;
+}
+
+input {
+	width: 50%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+
