@@ -3,6 +3,8 @@ let domSubmit = document.querySelector("#playerForm");
 let domReplay = document.querySelector("#replay");
 let domScore = document.querySelector("#score");
 let domCanvas = document.createElement("canvas");
+let domSwiper = document.querySelector("#swiper");
+let domPlayerDContainer = document.querySelector("#player-details");
 document.querySelector("#canvas").appendChild(domCanvas);
 
 //CTX is the context of the canvas.
@@ -22,6 +24,8 @@ class SnakePart {
 		this.y = y;
 	}
 }
+
+
 
 //First thing to set up, is the game loop.
 //NOTE: The game loop is a function that runs every frame of the game or continuously updates the screen.
@@ -69,7 +73,13 @@ function checkScoreNname() {
 	if (localStorage.getItem("username") === null) {
 		localStorage.setItem("username", "Player");
 	}
+	if(localStorage.getItem('playerCharacter') === null){
+		localStorage.setItem('playerCharacter', 'player');
+	}
+
 }
+
+
 
 //COMMENT: Create an audio object that will be used to play sound when the snake eats the food.
 const gulpAudio = new Audio("../audio/gulp.mp3");
@@ -280,6 +290,12 @@ function isGameOver() {
 drawGame();
 checkScoreNname();
 
+
+if(localStorage.getItem("username") === 'Player'){
+	document.querySelector(".bg-modal").style.display = "flex";
+
+ }
+
 //COMMENT: create an event listener that will reset the game.
 
 // ========== Leaderboard =======================
@@ -301,7 +317,7 @@ async function getPosition() {
 	return data.length + 1;
 }
 
-// ===========Input Name Modal=====================
+//HACK: ===========  Input Name Modal=====================
 
 domReplay.addEventListener("click", function () {
 	document.querySelector(".bg-modal").style.display = "flex";
@@ -311,12 +327,15 @@ domReplay.addEventListener("click", function () {
 	// location.reload();
 });
 
+
+
 domSubmit.addEventListener("submit", function (e) {
 	e.preventDefault();
-	console.log(e.target.playerName.value);
-	let playerName = e.target.playerName.value;
-	localStorage.setItem("username", playerName);
-	document.querySelector(".bg-modal").style.display = "none";
+	localStorage.setItem("username", e.target.playerName.value);
+	localStorage.setItem('playerCharacter', swiper.activeIndex); 
+	populatePlayerDetails()
+
+
 	location.reload();
 });
 

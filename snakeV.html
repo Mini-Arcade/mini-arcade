@@ -37,8 +37,16 @@
 					<i class="fas fa-play"></i>
 					RESTART
 				</button>
+        
 				<div id="canvas">
-					<div class="leaderboard">
+          <!-- Leadrboard starts -->
+          <div id="player-details">
+
+          </div>
+          <!-- Leaderboard ends -->
+
+          <!-- Player Display Starts -->
+          <div class="leaderboard">
 						<h1>
 							<svg class="ico-cup">
 								<use xlink:href="#cup"></use>
@@ -47,65 +55,75 @@
 						</h1>
 						<ol id="plyrOl"></ol>
 					</div>
+          <!-- Player Display Ends -->
+
+          <!-- Modal Starts -->
 					<div class="bg-modal">
 						<div class="modal-content">
-							<!-- Slider main container -->
+							<!-- NOTE: Slider main container -->
 							<div class="swiper">
 								<!-- Additional required wrapper -->
 								<div class="swiper-wrapper">
 									<!-- Slides -->
 									<div class="swiper-slide">
 										<img
-											src="./images/char2.png"
+											src="./images/0.png"
 											width="50px"
 											alt="character image"
 										/>
 									</div>
 									<div class="swiper-slide">
 										<img
-											src="./images/char1.png"
+											src="./images/1.png"
 											width="50px"
 											alt="character image"
 										/>
 									</div>
 									<div class="swiper-slide">
 										<img
-											src="./images/char3.png"
+											src="./images/2.png"
 											width="50px"
 											alt="character image"
 										/>
 									</div>
 									<div class="swiper-slide">
 										<img
-											src="./images/char4.png"
+											src="./images/3.png"
 											width="50px"
 											alt="character image"
 										/>
 									</div>
 									<div class="swiper-slide">
 										<img
-											src="./images/char5.png"
+											src="./images/4.png"
 											width="50px"
 											alt="character image"
 										/>
 									</div>
 									<div class="swiper-slide">
 										<img
-											src="./images/char6.png"
+											src="./images/5.png"
 											width="50px"
 											alt="character image"
 										/>
 									</div>
 									<div class="swiper-slide">
 										<img
-											src="./images/char7.png"
+											src="./images/6.png"
 											width="50px"
 											alt="character image"
 										/>
 									</div>
 									<div class="swiper-slide">
 										<img
-											src="./images/char8.png"
+											src="./images/7.png"
+											width="50px"
+											alt="character image"
+										/>
+									</div>
+                  <div class="swiper-slide">
+										<img
+											src="./images/8.png"
 											width="50px"
 											alt="character image"
 										/>
@@ -117,8 +135,8 @@
 								<div class="swiper-pagination"></div>
 
 								<!-- If we need navigation buttons -->
-								<div class="swiper-button-prev"></div>
-								<div class="swiper-button-next"></div>
+								<div class="swiper-button-prev" id="swiper-next"></div>
+								<div class="swiper-button-next" id="swiper-previous"></div>
 
 								<!-- If we need scrollbar -->
 							</div>
@@ -137,6 +155,8 @@
 							</form>
 						</div>
 					</div>
+          <!-- Modal Ends -->
+
 				</div>
 
 				<div id="ui">
@@ -151,6 +171,7 @@
 		</div>
 		<script src="js/snakeV.js"></script>
 		<script src="js/leaderboard.js"></script>
+    <script src="js/populatePlayerD.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 		<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 
@@ -177,18 +198,9 @@
 
 			// Restricts input for the given textbox to the given inputFilter.
 			function lettersOnly(input) {
-				let regex = /[^a-z]{3,10}/gi;
+				let regex = /[^a-zA-Z]{3,10}$/gi;
 				input.value = input.value.replace(regex, "");
 			}
-
-			//// One function that does three things
-
-			//Make an axios call to the post end point -: this create a new game
-			//Rerun getLeaderboard()
-			//Hide modal
-
-			//This fucntion runs on Submit
-
 
 		</script>
 	</body>
