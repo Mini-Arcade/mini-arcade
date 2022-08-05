@@ -1,6 +1,6 @@
 async function getLeaderboard() {
 	try {
-		const response = await axios.get(`${process.env.API_URL}/games");
+		const response = await axios.get(`https://snakev-server.netlify.app/.netlify/functions/api/games`);
 		console.log(response);
         const data = response.data;
 
