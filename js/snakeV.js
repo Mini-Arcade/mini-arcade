@@ -270,7 +270,7 @@ function isGameOver() {
 		});
 
 		//Add a game to the mongo database.
-		axios.post(`http://localhost:3005/games?name=${localStorage.getItem("username")}&score=${score}`).then((res) => {
+		axios.post(`${process.env.API_URL}/games?name=${localStorage.getItem("username")}&score=${score}`).then((res) => {
 			getLeaderboard().then(() => {
 				console.log('I am here')
 				return true
@@ -301,7 +301,7 @@ if(localStorage.getItem("username") === 'Player'){
 // ========== Leaderboard =======================
 
 async function getPosition() {
-	const response = await axios.get("http://localhost:3005/games");
+	const response = await axios.get(`${process.env.API}/games`);
 	const data = response.data;
 	data.sort((a, b) => b.score - a.score);
 

@@ -1,6 +1,6 @@
 async function getLeaderboard() {
 	try {
-		const response = await axios.get("http://localhost:3005/games");
+		const response = await axios.get(`${process.env.API_URL}/games");
 		console.log(response);
         const data = response.data;
 
